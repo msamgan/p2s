@@ -7,9 +7,13 @@ namespace App\Http\Controllers;
 use App\Actions\Notification\NotifyUser;
 use App\Actions\Rate\CreateRate;
 use App\Actions\Rate\UpdateRate;
+use App\Http\Requests\DeleteRateRequest;
 use App\Http\Requests\StoreRateRequest;
+use App\Http\Requests\UpdateRateRequest;
 use App\Models\Rate;
 use App\Notifications\RateCreated;
+use App\Notifications\RateDeleted;
+use App\Notifications\RateUpdated;
 use App\Stores\RateStore;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
@@ -59,6 +63,30 @@ final class RateController extends Controller
             DB::rollBack();
             throw $e;
         }
+    }
+
+    #[Action(params: ['rate'], middleware: ['auth', 'check_has_business', 'can:rate.view'])]
+    public function show(Rate $rate): Rate
+    {
+        // Access::businessCheck(businessId: $rate->business_id);
+
+        return $rate;
+    }
+
+    #[Action(method: 'post', params: ['rate'], middleware: ['auth', 'check_has_business', 'can:rate.update'])]
+    public function update(UpdateRateRequest $request, Rate $rate, UpdateRate $updateRate, NotifyUser $notifyUser): void
+    {
+        $updateRate->handle($rate, $request->validated());
+
+        $notifyUser->handle(new RateUpdated(auth()->user()));
+    }
+
+    #[Action(method: 'delete', params: ['rate'], middleware: ['auth', 'check_has_business', 'can:rate.delete'])]
+    public function destroy(DeleteRateRequest $request, Rate $rate, NotifyUser $notifyUser): void
+    {
+        $notifyUser->handle(new RateDeleted(auth()->user()));
+
+        $rate->delete();
     }
 
     #[Action(middleware: ['auth', 'check_has_business', 'can:rate.list'])]
