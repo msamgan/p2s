@@ -7,16 +7,17 @@ use App\Actions\Role\AssignRole;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Hash;
 
 return new class extends Migration
 {
     public function up(): void
     {
-        $businessName = 'Business';
+        $businessName = 'P2S';
 
         $user = User::query()->create([
             'name' => 'Main Admin',
-            'email' => 'main.admin@business.com',
+            'email' => 'main.admin@p2s.com',
             'password' => Hash::make('Main@2025'),
             'email_verified_at' => now(),
         ]);
