@@ -6,6 +6,12 @@ namespace App\Enums;
 
 enum PermissionEnum: string
 {
+    case RateList = 'rate.list';
+    case RateCreate = 'rate.create';
+    case RateView = 'rate.view';
+    case RateUpdate = 'rate.update';
+    case RateDelete = 'rate.delete';
+
     case BusinessList = 'business.list';
     case BusinessCreate = 'business.create';
     case BusinessView = 'business.view';
@@ -44,6 +50,12 @@ enum PermissionEnum: string
             self::UserView => 'can:user.view',
             self::UserUpdate => 'can:user.update',
             self::UserDelete => 'can:user.delete',
+
+            self::RateList => 'can:rate.list',
+            self::RateCreate => 'can:rate.create',
+            self::RateView => 'can:rate.view',
+            self::RateUpdate => 'can:rate.update',
+            self::RateDelete => 'can:rate.delete',
         };
     }
 }
