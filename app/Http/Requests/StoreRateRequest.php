@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Requests;
 
+use App\Rules\RateFile;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -25,7 +26,7 @@ final class StoreRateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'rate' => ['required', 'file', 'mimes:xlsx,xls,csv', 'max:10240'],
+            'rate' => ['required', 'file', 'mimes:xlsx,xls,csv', 'max:10240', new RateFile],
         ];
     }
 }

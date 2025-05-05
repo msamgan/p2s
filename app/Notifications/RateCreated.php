@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Notifications;
 
+use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
@@ -13,7 +14,7 @@ final class RateCreated extends Notification // implements ShouldQueue
     /**
      * Create a new notification instance.
      */
-    public function __construct() {}
+    public function __construct(public User $user) {}
 
     /**
      * Get the notification's delivery channels.
@@ -43,11 +44,9 @@ final class RateCreated extends Notification // implements ShouldQueue
      */
     public function toArray(object $notifiable): array
     {
-        now()->format('F j, Y, g:i a');
-
         return [
-            'title' => '',
-            'message' => '',
+            'title' => $this->user->key('name') . ' uploaded rates.',
+            'message' => $this->user->key('name') . ' uploaded rates at ' . now()->format('F j, Y, g:i a'),
         ];
     }
 }

@@ -36,19 +36,16 @@ export default function Index() {
 
     const processRate = (rate) => {
         return {
-            Name: <Name value={rate.name} />,
-            Actions: (
-                <Actions
-                    edit={<EditActionButton module={'rate'} onClick={() => editRate(rate)} />}
-                    deleteAction={
-                        <DeleteActionButton
-                            module={'rate'}
-                            route={destroy.route({ rate: rate.id })}
-                            refresh={getRates}
-                        />
-                    }
-                />
-            ),
+            country: <Name value={rate.country_code} />,
+            weight: rate.weight,
+            weightUnit: rate.weight_unit,
+            baseRate: rate.base_rate,
+            markupValue: rate.markup_value,
+            markupType: rate.markup_type,
+            markup: rate.markup,
+            surcharges: rate.surcharges,
+            rate: rate.rate,
+            currency: rate.currency,
         }
     }
 

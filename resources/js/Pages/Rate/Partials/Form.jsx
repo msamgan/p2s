@@ -64,7 +64,9 @@ export default function Form({ getRates, rate = null }) {
                             </div>
                         </div>
                     </div>
-                    <a href={'/samples/rates.xlsx'} className={'float-end mt-8'}>Download sample.</a>
+                    <a href={'/samples/rates.xlsx'} className={'float-end mt-8'}>
+                        Download sample.
+                    </a>
                 </div>
             </div>
 
