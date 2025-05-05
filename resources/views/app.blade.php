@@ -32,10 +32,21 @@
     <body class="font-sans antialiased">
         @inertia
 
+        <div id="preloader" class="fixed inset-0 flex items-center justify-center bg-white z-50">
+            <p class="text-lg font-semibold text-gray-500">Loading...</p>
+        </div>
+
         <!-- Overlay -->
         <div class="layout-overlay layout-menu-toggle"></div>
 
         <!-- Drag Target Area To SlideIn Menu On Small Screens -->
         <div class="drag-target"></div>
+
+        <script>
+            // Hide the preloader once the page is fully loaded
+            window.addEventListener('load', function () {
+                document.getElementById('preloader').style.display = 'none';
+            });
+        </script>
     </body>
 </html>
