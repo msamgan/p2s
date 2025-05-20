@@ -44,7 +44,7 @@ export default function Index() {
             markupType: rate.markup_type,
             markup: rate.markup,
             surcharges: rate.surcharges,
-            rate: rate.rate,
+            rate: <Name value={rate.rate} />,
             currency: rate.currency,
         }
     }
@@ -58,7 +58,9 @@ export default function Index() {
     }, [])
 
     useEffect(() => {
-        setData(rates.map((rate) => processRate(rate)))
+        if (loading) return
+
+        setData(rates.data.map((rate) => processRate(rate)))
     }, [rates])
 
     return (
@@ -86,7 +88,7 @@ export default function Index() {
             )}
 
             <div className="col-12">
-                <Table data={data} loading={loading} permission={can(permissions.rate.list)} />
+                <Table data={data} loading={loading} permission={can(permissions.rate.list)} total={rates.total} />
             </div>
         </Master>
     )

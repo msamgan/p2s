@@ -16,7 +16,6 @@ use App\Notifications\RateDeleted;
 use App\Notifications\RateUpdated;
 use App\Stores\RateStore;
 use Exception;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -90,8 +89,8 @@ final class RateController extends Controller
     }
 
     #[Action(middleware: ['auth', 'check_has_business', 'can:rate.list'])]
-    public function rates(): Collection
+    public function rates()
     {
-        return Rate::query()->get();
+        return Rate::query()->paginate(200);
     }
 }
