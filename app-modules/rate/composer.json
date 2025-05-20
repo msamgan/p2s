@@ -1,0 +1,24 @@
+{
+	"name": "p2s/rate",
+	"description": "",
+	"type": "library",
+	"version": "1.0",
+	"license": "proprietary",
+	"require": {},
+	"autoload": {
+		"psr-4": {
+			"P2s\\Rate\\": "src/",
+			"P2s\\Rate\\Tests\\": "tests/",
+			"P2s\\Rate\\Database\\Factories\\": "database/factories/",
+			"P2s\\Rate\\Database\\Seeders\\": "database/seeders/"
+		}
+	},
+	"minimum-stability": "stable",
+	"extra": {
+		"laravel": {
+			"providers": [
+				"P2s\\Rate\\Providers\\RateServiceProvider"
+			]
+		}
+	}
+}

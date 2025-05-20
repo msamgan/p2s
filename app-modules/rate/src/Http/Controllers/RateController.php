@@ -1,0 +1,69 @@
+<?php
+
+declare(strict_types=1);
+
+namespace P2s\Rate\Http\Controllers;
+
+use App\Http\Requests\StoreRateRequest;
+use App\Http\Requests\UpdateRateRequest;
+use Inertia\Inertia;
+use P2s\Rate\Models\Rate;
+
+final class RateController
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        return Inertia::render('rate::Index');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(StoreRateRequest $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Rate $rate)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Rate $rate)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(UpdateRateRequest $request, Rate $rate)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Rate $rate)
+    {
+        //
+    }
+}
