@@ -31,4 +31,9 @@ final class RateStore
             'currency' => $row[9],
         ];
     }
+
+    public function dumpCountryRate(string $countryCode): void
+    {
+        Rate::query()->where('country_code', $countryCode)->delete();
+    }
 }

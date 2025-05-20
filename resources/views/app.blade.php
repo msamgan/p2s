@@ -32,7 +32,7 @@
     <body class="font-sans antialiased">
         @inertia
 
-        <div id="preloader" class="fixed inset-0 flex items-center justify-center bg-white z-50">
+        <div id="preloader" class="fixed inset-0 z-50 flex items-center justify-center bg-white">
             <p class="text-lg font-semibold text-gray-500">Loading...</p>
         </div>
 
@@ -45,8 +45,8 @@
         <script>
             // Hide the preloader once the page is fully loaded
             window.addEventListener('load', function () {
-                document.getElementById('preloader').style.display = 'none';
-            });
+                document.getElementById('preloader').style.display = 'none'
+            })
         </script>
     </body>
 </html>
