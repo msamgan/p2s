@@ -8,77 +8,77 @@ const Navbar = () => {
 
     return (
         <nav className="w-full bg-white shadow-md">
-            <div className="mx-auto flex h-[78px] max-w-[1700px] items-center justify-between px-4 md:px-8">
+            <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 md:px-8 lg:px-10">
                 {/* Logo */}
                 <Link to="/" className="flex items-center">
-                    <img src={logo} alt="Parcel2Ship Logo" className="h-[61px] w-[94px] object-contain" />
+                    <img src={logo} alt="Parcel2Ship Logo" className="h-14 w-auto object-contain" />
                 </Link>
 
                 {/* Desktop Nav */}
-                <ul className="hidden gap-[50px] font-medium text-gray-700 md:flex lg:gap-[112px]">
+                <ul className="hidden gap-8 font-medium text-gray-700 md:flex lg:gap-12">
                     <li>
-                        <Link to="/business" className="text-[16px] font-bold">
+                        <Link to="/business" className="text-base font-semibold transition hover:text-blue-700">
                             Business
                         </Link>
                     </li>
                     <li>
-                        <Link to="/getAquote" className="text-[16px] font-bold">
+                        <Link to="/getAquote" className="text-base font-semibold transition hover:text-blue-700">
                             Get a Quote
                         </Link>
                     </li>
                     <li>
-                        <Link to="/services" className="text-[16px] font-bold">
+                        <Link to="/services" className="text-base font-semibold transition hover:text-blue-700">
                             Services
                         </Link>
                     </li>
                     <li>
-                        <Link to="/tracking" className="text-[16px] font-bold">
+                        <Link to="/tracking" className="text-base font-semibold transition hover:text-blue-700">
                             Track a Parcel
                         </Link>
                     </li>
                 </ul>
 
                 {/*  Buttons */}
-                <div className="hidden items-center space-x-[45px] md:flex">
-                    <Link to="/login" className="font-bold text-[rgba(1,0,252,1)]">
+                <div className="hidden items-center space-x-6 md:flex">
+                    <Link to="/login" className="font-semibold text-blue-700 transition hover:text-blue-800">
                         SIGN IN
                     </Link>
 
-                    <Link to="/signup" className="rounded-md bg-[rgba(1,0,252,1)] px-4 py-2 font-semibold text-white">
+                    <Link to="/signup" className="rounded-md bg-blue-700 px-4 py-2 font-semibold text-white shadow-sm transition hover:bg-blue-800">
                         SIGN UP
                     </Link>
                 </div>
 
                 {/* Mobile Menu Toggle */}
                 <button className="text-blue-700 md:hidden" onClick={() => setIsOpen(!isOpen)}>
-                    {isOpen ? <X size={28} /> : <Menu size={28} />}
+                    {isOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
             </div>
 
             {/* Mobile Dropdown Menu */}
             {isOpen && (
-                <div className="bg-white px-4 pb-6 shadow-md md:hidden">
-                    <ul className="mt-4 flex flex-col gap-4 font-medium text-gray-700">
+                <div className="bg-white px-6 py-4 shadow-md md:hidden">
+                    <ul className="mb-6 flex flex-col gap-4 font-medium text-gray-700">
                         <li>
-                            <Link to="/business">Business</Link>
+                            <Link to="/business" className="block py-2 text-base font-semibold transition hover:text-blue-700">Business</Link>
                         </li>
                         <li>
-                            <Link to="/getAquote">Get a Quote</Link>
+                            <Link to="/getAquote" className="block py-2 text-base font-semibold transition hover:text-blue-700">Get a Quote</Link>
                         </li>
                         <li>
-                            <Link to="/services">Services</Link>
+                            <Link to="/services" className="block py-2 text-base font-semibold transition hover:text-blue-700">Services</Link>
                         </li>
                         <li>
-                            <Link to="/tracking">Track a Parcel</Link>
+                            <Link to="/tracking" className="block py-2 text-base font-semibold transition hover:text-blue-700">Track a Parcel</Link>
                         </li>
                     </ul>
-                    <div className="mt-6 flex flex-col space-y-3">
-                        <Link to="/login" className="font-bold text-blue-600">
+                    <div className="flex flex-col space-y-4">
+                        <Link to="/login" className="font-semibold text-blue-700 transition hover:text-blue-800">
                             SIGN IN
                         </Link>
                         <Link
                             to="/signup"
-                            className="rounded-md bg-blue-700 px-4 py-2 text-center font-semibold text-white transition hover:bg-blue-800"
+                            className="rounded-md bg-blue-700 px-4 py-2 text-center font-semibold text-white shadow-sm transition hover:bg-blue-800"
                         >
                             SIGN UP
                         </Link>

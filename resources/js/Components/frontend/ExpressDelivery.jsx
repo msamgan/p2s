@@ -5,19 +5,19 @@ const ExpressDelivery = () => {
     return (
         <section className="flex min-h-[600px] flex-col bg-gradient-to-r from-[#0100FC] to-[#16B86C] text-white md:flex-row">
             {/* Text Section */}
-            <div className="flex w-full flex-col justify-center px-6 py-10 md:w-1/2 md:px-20">
-                <h2 className="mb-6 text-3xl font-bold leading-snug md:mb-8 lg:text-4xl">
+            <div className="flex w-full flex-col justify-center px-6 py-12 md:w-1/2 md:px-10 lg:px-16">
+                <h2 className="mb-6 text-2xl font-bold leading-tight sm:text-3xl md:text-4xl">
                     Express Delivery <br /> Made Easy
                 </h2>
-                <p className="mb-4 text-[24px] leading-relaxed md:mb-6">
+                <p className="mb-6 text-base leading-relaxed sm:text-lg md:text-xl">
                     Do you need your parcel to arrive the next day? Want it there before 9am? Or even this very same
                     day?
                 </p>
-                <p className="mb-4 text-[24px] leading-relaxed md:mb-6">
+                <p className="mb-6 text-base leading-relaxed sm:text-lg md:text-xl">
                     We specialise in express delivery. Choose same day delivery with CitySprint or next day delivery is
                     available with many of our UK couriers and starts from just £1.99 exc VAT!
                 </p>
-                <p className="text-[24px] leading-relaxed">
+                <p className="text-base leading-relaxed sm:text-lg md:text-xl">
                     And if your parcel is of the highest importance, our signed for delivery options offer that added
                     layer of protection.
                 </p>
@@ -25,7 +25,7 @@ const ExpressDelivery = () => {
 
             {/* Background Image Section */}
             <div
-                className="min-h-[300px] w-full bg-cover bg-center bg-no-repeat md:min-h-full md:w-1/2"
+                className="h-80 w-full bg-cover bg-center bg-no-repeat md:h-auto md:w-1/2"
                 style={{ backgroundImage: `url(${delivery})` }}
             />
         </section>

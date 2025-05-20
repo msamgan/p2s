@@ -3,8 +3,8 @@ import paymentMethod from '../../../../public/frontend/assets/images/payments.pn
 
 const Footer = () => {
     return (
-        <footer className="bg-[#1c1c1c] px-6 py-10 text-white md:px-20">
-            <div className="mx-auto flex w-full max-w-screen-xl flex-col justify-between md:flex-row">
+        <footer className="bg-gray-900 px-6 py-12 text-white md:px-8 lg:px-10">
+            <div className="mx-auto flex w-full max-w-7xl flex-col justify-between space-y-8 md:flex-row md:space-y-0">
                 {/* payments */}
                 <div className="flex w-full flex-shrink-0 justify-center md:w-auto md:justify-start">
                     <img src={paymentMethod} alt="Payment Methods" className="h-10 object-contain" />
@@ -14,45 +14,45 @@ const Footer = () => {
                 <div className="grid grid-cols-2 gap-8 text-sm sm:grid-cols-2 md:grid-cols-4">
                     {/* Parcel2Ship */}
                     <div>
-                        <h4 className="mb-2 font-bold text-green-500">Parcel2Ship</h4>
-                        <ul className="space-y-1">
-                            <li>Services</li>
-                            <li>Package Consolidation</li>
-                            <li>Item Consolidation</li>
-                            <li>Buy it for me</li>
-                            <li>Refer a Friend</li>
-                            <li>E-commerce Solutions</li>
+                        <h4 className="mb-3 font-bold text-green-500">Parcel2Ship</h4>
+                        <ul className="space-y-2">
+                            <li className="hover:text-green-400 transition">Services</li>
+                            <li className="hover:text-green-400 transition">Package Consolidation</li>
+                            <li className="hover:text-green-400 transition">Item Consolidation</li>
+                            <li className="hover:text-green-400 transition">Buy it for me</li>
+                            <li className="hover:text-green-400 transition">Refer a Friend</li>
+                            <li className="hover:text-green-400 transition">E-commerce Solutions</li>
                         </ul>
                     </div>
 
                     {/* Help */}
                     <div>
-                        <h4 className="mb-2 font-bold text-green-500">Help</h4>
-                        <ul className="space-y-1">
-                            <li>Frequently Asked Questions</li>
-                            <li>Prohibited Materials</li>
-                            <li>Shopping Directory</li>
+                        <h4 className="mb-3 font-bold text-green-500">Help</h4>
+                        <ul className="space-y-2">
+                            <li className="hover:text-green-400 transition">Frequently Asked Questions</li>
+                            <li className="hover:text-green-400 transition">Prohibited Materials</li>
+                            <li className="hover:text-green-400 transition">Shopping Directory</li>
                         </ul>
                     </div>
 
                     {/* Warehouses */}
                     <div>
-                        <h4 className="mb-2 font-bold text-green-500">Warehouses</h4>
-                        <ul className="space-y-1">
-                            <li>United States</li>
-                            <li>Turkey</li>
+                        <h4 className="mb-3 font-bold text-green-500">Warehouses</h4>
+                        <ul className="space-y-2">
+                            <li className="hover:text-green-400 transition">United States</li>
+                            <li className="hover:text-green-400 transition">Turkey</li>
                         </ul>
                     </div>
 
                     {/* About */}
                     <div>
-                        <h4 className="mb-2 font-bold text-green-500">About</h4>
-                        <ul className="space-y-1">
-                            <li>Plans & Pricing</li>
-                            <li>How It Works</li>
-                            <li>Why Choose Us</li>
-                            <li>Contact Us</li>
-                            <li>About Us</li>
+                        <h4 className="mb-3 font-bold text-green-500">About</h4>
+                        <ul className="space-y-2">
+                            <li className="hover:text-green-400 transition">Plans & Pricing</li>
+                            <li className="hover:text-green-400 transition">How It Works</li>
+                            <li className="hover:text-green-400 transition">Why Choose Us</li>
+                            <li className="hover:text-green-400 transition">Contact Us</li>
+                            <li className="hover:text-green-400 transition">About Us</li>
                         </ul>
                     </div>
                 </div>

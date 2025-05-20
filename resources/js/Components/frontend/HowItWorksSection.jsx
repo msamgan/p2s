@@ -26,29 +26,33 @@ const steps = [
 
 const HowItWorksSection = () => {
     return (
-        <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
+        <section className="bg-white px-6 py-16 md:px-8 lg:px-10">
             <div className="mx-auto max-w-7xl text-center">
-                <h2 className="mb-12 text-3xl font-extrabold tracking-tight sm:text-4xl">Why Choose Parcel to Ship?</h2>
+                <h2 className="mb-10 text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl">
+                    Why Choose Parcel to Ship?
+                </h2>
                 <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
                     {steps.map((step, index) => (
                         <div
                             key={index}
-                            className="rounded-3xl border border-gray-200 bg-white p-6 shadow-md transition hover:shadow-xl"
+                            className="rounded-2xl border border-gray-200 bg-white p-6 shadow-md transition duration-300 hover:shadow-lg md:p-8"
                         >
                             <img
                                 src={step.image}
                                 alt={step.title}
-                                className="mb-6 h-48 w-full rounded-lg object-contain"
+                                className="mx-auto mb-6 h-40 w-auto object-contain sm:h-48"
                             />
-                            <h3 className="mb-4 text-xl font-bold">{step.title}</h3>
-                            <p className="text-sm leading-relaxed text-gray-600 sm:text-base">{step.description}</p>
+                            <h3 className="mb-4 text-xl font-bold leading-tight">{step.title}</h3>
+                            <p className="text-base leading-relaxed text-gray-600">{step.description}</p>
                         </div>
                     ))}
                 </div>
 
                 {/* Button */}
-                <div className="mt-10">
-                    <button className="know-button">KNOW MORE</button>
+                <div className="mt-12">
+                    <button className="rounded-xl bg-blue-700 px-8 py-3 font-semibold text-white shadow-md transition hover:bg-blue-800">
+                        KNOW MORE
+                    </button>
                 </div>
             </div>
         </section>
