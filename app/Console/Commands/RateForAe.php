@@ -18,7 +18,7 @@ final class RateForAe extends Command implements Isolatable
      *
      * @var string
      */
-    protected $signature = 'app:rate-ae {constAmount=16} {constAmountWeightLimit=5} {--additionAmount=1.5} {limit=50}';
+    protected $signature = 'app:rate-ae {constAmount=16} {constAmountWeightLimit=5} {additionAmount=1.5} {limit=50} {service=priority_export_express}';
 
     /**
      * The console command description.
@@ -34,14 +34,15 @@ final class RateForAe extends Command implements Isolatable
     {
         $constAmount = $this->argument('constAmount');
         $constAmountWeightLimit = $this->argument('constAmountWeightLimit');
-        $additionAmount = $this->option('additionAmount');
+        $additionAmount = $this->argument('additionAmount');
+        $service = $this->argument('service');
 
         $countryStore->createOrFind(countryName: 'United Arab Emirates', countryCode: 'AE');
 
         $rateStore->dumpCountryRate('AE');
 
         for ($i = 0.5; $i <= $constAmountWeightLimit; $i += 0.5) {
-            $createRate->handle($rateStore->excelRowMapper(['AE', $i, 'kg', $constAmount, 0, 'fixed', 0, 0, $constAmount, CurrencyEnum::AED->value]));
+            $createRate->handle($rateStore->excelRowMapper(['AE', $i, 'kg', $constAmount, 0, 'fixed', 0, 0, $constAmount, CurrencyEnum::AED->value, $service]));
         }
 
         $nextLoopStarter = $constAmountWeightLimit + 0.5;
@@ -50,7 +51,7 @@ final class RateForAe extends Command implements Isolatable
         $counter = 1;
         for ($i = $nextLoopStarter; $i <= $nextLoopLimit; $i += 0.5) {
             $amount = $constAmount + ($additionAmount * $counter);
-            $createRate->handle($rateStore->excelRowMapper(['AE', $i, 'kg', $amount, 0, 'fixed', 0, 0, $amount, CurrencyEnum::AED->value]));
+            $createRate->handle($rateStore->excelRowMapper(['AE', $i, 'kg', $amount, 0, 'fixed', 0, 0, $amount, CurrencyEnum::AED->value, $service]));
             $counter++;
         }
 

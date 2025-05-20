@@ -24,5 +24,6 @@ final class Rate extends Model
         'surcharges',
         'rate',
         'currency',
+        'service_identifier',
     ];
 }

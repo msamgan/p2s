@@ -29,6 +29,7 @@ final class RateStore
             'surcharges' => $row[7],
             'rate' => $row[8],
             'currency' => $row[9],
+            'service_identifier' => $row[10],
         ];
     }
 

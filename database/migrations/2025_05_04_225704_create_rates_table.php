@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('rates', function (Blueprint $table) {
             $table->id();
             $table->foreignId('business_id')->default(1)->constrained();
+            $table->string('service_identifier');
             $table->string('country_code');
             $table->float('weight');
             $table->string('weight_unit')->default(App\Enums\WeightUnitEnum::Kg);
