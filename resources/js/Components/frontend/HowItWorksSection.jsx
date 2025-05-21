@@ -59,13 +59,15 @@ const HowItWorksSection = () => {
                             </div>
 
                             {/* Image */}
-                            <div className="relative mb-6 overflow-hidden rounded-xl shadow-md">
-                                <img
-                                    src={step.image}
-                                    alt={step.title}
-                                    className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent"></div>
+                            <div className="flex justify-center items-center mb-6">
+                                <div className="relative h-32 w-32 overflow-hidden rounded-full shadow-md border-4 border-blue-100 group-hover:border-blue-200 transition-all duration-300">
+                                    <img
+                                        src={step.image}
+                                        alt={step.title}
+                                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent"></div>
+                                </div>
                             </div>
 
                             {/* Content */}

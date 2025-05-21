@@ -27,8 +27,8 @@ const Navbar = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/services" className="text-base font-semibold transition hover:text-blue-700">
-                            Services
+                        <Link to="/rates-and-services" className="text-base font-semibold transition hover:text-blue-700">
+                            Rates & Services
                         </Link>
                     </li>
                     <li>
@@ -66,7 +66,7 @@ const Navbar = () => {
                             <Link to="/getAquote" className="block py-2 text-base font-semibold transition hover:text-blue-700">Get a Quote</Link>
                         </li>
                         <li>
-                            <Link to="/services" className="block py-2 text-base font-semibold transition hover:text-blue-700">Services</Link>
+                            <Link to="/rates-and-services" className="block py-2 text-base font-semibold transition hover:text-blue-700">Rates & Services</Link>
                         </li>
                         <li>
                             <Link to="/tracking" className="block py-2 text-base font-semibold transition hover:text-blue-700">Track a Parcel</Link>
