@@ -40,7 +40,7 @@ const TableContainer = ({ columns, data, tdClassName, total = 0 }) => {
     )
 }
 
-export default function Table({ data, tdClassName = [], loading, permission, total = 0  }) {
+export default function Table({ data, tdClassName = [], loading, permission, total = 0 }) {
     const columns = data.length > 0 ? Object.keys(data[0]).map(toTitleCase) : []
 
     return permission ? (

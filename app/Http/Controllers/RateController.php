@@ -10,12 +10,16 @@ use App\Actions\Rate\UpdateRate;
 use App\Http\Requests\DeleteRateRequest;
 use App\Http\Requests\StoreRateRequest;
 use App\Http\Requests\UpdateRateRequest;
+use App\Models\Country;
 use App\Models\Rate;
 use App\Notifications\RateCreated;
 use App\Notifications\RateDeleted;
 use App\Notifications\RateUpdated;
 use App\Stores\RateStore;
+use App\Utils\Converter;
 use Exception;
+use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -92,5 +96,36 @@ final class RateController extends Controller
     public function rates()
     {
         return Rate::query()->paginate(200);
+    }
+
+    #[Action]
+    public function showRates(Request $request): Collection
+    {
+        return Rate::query()
+            ->where('business_id', 1)
+            ->where('country_code', mb_strtoupper((string) $request->get('to')))
+            ->where('weight', Converter::calculateChargeableWeight(
+                length: (float) $request->get('length'),
+                width: (float) $request->get('width'),
+                height: (float) $request->get('height'),
+                weight: (float) $request->get('weight')
+            ))->with('service')
+            ->get()->map(fn (Rate $rate): array => [
+                'country_code' => $rate->key('country_code'),
+                'weight' => $rate->key('weight'),
+                'weight_unit' => $rate->key('weight_unit'),
+                'rate' => $rate->key('rate'),
+                'currency' => mb_strtoupper($rate->currency),
+                'service' => $rate->service->key('name'),
+                'company' => $rate->service->key('company'),
+                'logo' => url('img/aramex.png'),
+                'delivery_time' => $rate->key('country_code') === 'AE' ? '1-2 Days' : '--',
+            ]);
+    }
+
+    #[Action]
+    public function countries()
+    {
+        return Country::query()->get();
     }
 }
