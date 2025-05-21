@@ -13,16 +13,16 @@ const ExpressDelivery = () => {
                                 Express Delivery <br /> Made Easy
                             </h2>
                             <p className="mb-6 text-base leading-relaxed sm:text-lg md:text-xl">
-                                Do you need your parcel to arrive the next day? Want it there before 9am? Or even this very same
-                                day?
+                                Do you need your parcel to arrive the next day? Want it there before 9am? Or even this
+                                very same day?
                             </p>
                             <p className="mb-6 text-base leading-relaxed sm:text-lg md:text-xl">
-                                We specialise in express delivery. Choose same day delivery with CitySprint or next day delivery is
-                                available with many of our UK couriers and starts from just £1.99 exc VAT!
+                                We specialise in express delivery. Choose same day delivery with CitySprint or next day
+                                delivery is available with many of our UK couriers and starts from just £1.99 exc VAT!
                             </p>
                             <p className="text-base leading-relaxed sm:text-lg md:text-xl">
-                                And if your parcel is of the highest importance, our signed for delivery options offer that added
-                                layer of protection.
+                                And if your parcel is of the highest importance, our signed for delivery options offer
+                                that added layer of protection.
                             </p>
                         </div>
                     </div>

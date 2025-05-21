@@ -29,10 +29,12 @@ const steps = [
 
 const HowItWorksSection = () => {
     return (
-        <section className="bg-gradient-to-b from-white to-blue-50 px-6 py-20 md:px-8 lg:px-10">
+        <section className="to-blue-50 bg-gradient-to-b from-white px-6 py-20 md:px-8 lg:px-10">
             <div className="mx-auto max-w-7xl">
                 <div className="mb-16 text-center">
-                    <span className="inline-block rounded-full bg-blue-100 px-4 py-1 text-sm font-semibold text-blue-600">SHIPPING MADE SIMPLE</span>
+                    <span className="inline-block rounded-full bg-blue-100 px-4 py-1 text-sm font-semibold text-blue-600">
+                        SHIPPING MADE SIMPLE
+                    </span>
                     <h2 className="mb-6 mt-4 text-3xl font-extrabold leading-tight tracking-tight text-blue-800 sm:text-4xl lg:text-5xl">
                         Why Choose Parcel to Ship?
                     </h2>
@@ -49,7 +51,7 @@ const HowItWorksSection = () => {
                             className="group relative overflow-hidden rounded-2xl border border-blue-100 bg-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:border-blue-200 hover:shadow-xl md:p-8"
                         >
                             {/* Step Number */}
-                            <div className="absolute -right-4 -top-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-600 text-2xl font-bold text-white opacity-10 transition-all duration-500 group-hover:opacity-20 group-hover:rotate-12">
+                            <div className="absolute -right-4 -top-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-600 text-2xl font-bold text-white opacity-10 transition-all duration-500 group-hover:rotate-12 group-hover:opacity-20">
                                 {index + 1}
                             </div>
 
@@ -59,19 +61,21 @@ const HowItWorksSection = () => {
                             </div>
 
                             {/* Image */}
-                            <div className="flex justify-center items-center mb-6">
-                                <div className="relative h-32 w-32 overflow-hidden rounded-full shadow-md border-4 border-blue-100 group-hover:border-blue-200 transition-all duration-300">
+                            <div className="mb-6 flex items-center justify-center">
+                                <div className="relative h-32 w-32 overflow-hidden rounded-full border-4 border-blue-100 shadow-md transition-all duration-300 group-hover:border-blue-200">
                                     <img
                                         src={step.image}
                                         alt={step.title}
                                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent"></div>
+                                    <div className="to-transparent absolute inset-0 bg-gradient-to-t from-blue-900/20"></div>
                                 </div>
                             </div>
 
                             {/* Content */}
-                            <h3 className="mb-4 text-xl font-bold leading-tight text-blue-800 transition-colors duration-300 group-hover:text-blue-600">{step.title}</h3>
+                            <h3 className="mb-4 text-xl font-bold leading-tight text-blue-800 transition-colors duration-300 group-hover:text-blue-600">
+                                {step.title}
+                            </h3>
                             <p className="text-base leading-relaxed text-gray-600">{step.description}</p>
                         </div>
                     ))}
@@ -88,9 +92,14 @@ const HowItWorksSection = () => {
                             viewBox="0 0 24 24"
                             stroke="currentColor"
                         >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M14 5l7 7m0 0l-7 7m7-7H3"
+                            />
                         </svg>
-                        <span className="absolute -right-12 top-0 h-full w-12 translate-x-12 transform bg-white/10 skew-x-[30deg] transition-all duration-700 group-hover:-translate-x-32"></span>
+                        <span className="absolute -right-12 top-0 h-full w-12 translate-x-12 skew-x-[30deg] transform bg-white/10 transition-all duration-700 group-hover:-translate-x-32"></span>
                     </button>
                 </div>
             </div>

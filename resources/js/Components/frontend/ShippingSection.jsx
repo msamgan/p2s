@@ -13,7 +13,7 @@ const ShippingSection = () => {
             price: 'AED 45',
             deliveryTime: '1-2 days',
             rating: 4.8,
-            features: ['Tracking', 'Insurance', 'Door to Door']
+            features: ['Tracking', 'Insurance', 'Door to Door'],
         },
         {
             id: 2,
@@ -22,7 +22,7 @@ const ShippingSection = () => {
             price: 'AED 52',
             deliveryTime: '1-3 days',
             rating: 4.7,
-            features: ['Tracking', 'Insurance', 'Signature Required']
+            features: ['Tracking', 'Insurance', 'Signature Required'],
         },
         {
             id: 3,
@@ -31,7 +31,7 @@ const ShippingSection = () => {
             price: 'AED 35',
             deliveryTime: '2-4 days',
             rating: 4.5,
-            features: ['Tracking', 'PO Box Delivery']
+            features: ['Tracking', 'PO Box Delivery'],
         },
         {
             id: 4,
@@ -40,8 +40,8 @@ const ShippingSection = () => {
             price: 'AED 40',
             deliveryTime: '1-3 days',
             rating: 4.6,
-            features: ['Tracking', 'Insurance', 'Door to Door']
-        }
+            features: ['Tracking', 'Insurance', 'Door to Door'],
+        },
     ]
 
     const renderShippingServices = () => {
@@ -62,22 +62,40 @@ const ShippingSection = () => {
                     <table className="min-w-full divide-y divide-gray-200">
                         <thead className="bg-gray-50">
                             <tr>
-                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                                <th
+                                    scope="col"
+                                    className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                                >
                                     Shipping Company
                                 </th>
-                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                                <th
+                                    scope="col"
+                                    className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                                >
                                     Price
                                 </th>
-                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                                <th
+                                    scope="col"
+                                    className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                                >
                                     Delivery Time
                                 </th>
-                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                                <th
+                                    scope="col"
+                                    className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                                >
                                     Rating
                                 </th>
-                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                                <th
+                                    scope="col"
+                                    className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                                >
                                     Features
                                 </th>
-                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                                <th
+                                    scope="col"
+                                    className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                                >
                                     Action
                                 </th>
                             </tr>
@@ -91,7 +109,9 @@ const ShippingSection = () => {
                                                 <img className="h-10 w-10" src={service.logo} alt={service.company} />
                                             </div>
                                             <div className="ml-4">
-                                                <div className="text-sm font-medium text-gray-900">{service.company}</div>
+                                                <div className="text-sm font-medium text-gray-900">
+                                                    {service.company}
+                                                </div>
                                             </div>
                                         </div>
                                     </td>
@@ -107,7 +127,10 @@ const ShippingSection = () => {
                                     <td className="px-6 py-4">
                                         <div className="flex flex-wrap gap-1">
                                             {service.features.map((feature, index) => (
-                                                <span key={index} className="inline-flex rounded-full bg-blue-100 px-2 text-xs font-semibold leading-5 text-blue-800">
+                                                <span
+                                                    key={index}
+                                                    className="inline-flex rounded-full bg-blue-100 px-2 text-xs font-semibold leading-5 text-blue-800"
+                                                >
                                                     {feature}
                                                 </span>
                                             ))}
@@ -153,7 +176,8 @@ const ShippingSection = () => {
                         <div className="flex items-end">
                             <button
                                 onClick={() => setShowServices(true)}
-                                className="rounded-xl bg-green-600 px-8 py-3 text-base font-bold text-white shadow-md transition hover:bg-green-700">
+                                className="rounded-xl bg-green-600 px-8 py-3 text-base font-bold text-white shadow-md transition hover:bg-green-700"
+                            >
                                 Get a Quote
                             </button>
                         </div>
@@ -185,18 +209,30 @@ const ShippingSection = () => {
                             </div>
                         </div>
 
-                        <div className="flex w-full gap-5 mt-5">
+                        <div className="mt-5 flex w-full gap-5">
                             <div className="flex min-w-[180px] flex-1 flex-col">
                                 <label className="mb-2 text-sm font-semibold text-blue-700">Length</label>
-                                <input type="text" className="rounded-xl border bg-white px-4 py-3 shadow-sm" placeholder="cm" />
+                                <input
+                                    type="text"
+                                    className="rounded-xl border bg-white px-4 py-3 shadow-sm"
+                                    placeholder="cm"
+                                />
                             </div>
                             <div className="flex min-w-[180px] flex-1 flex-col">
                                 <label className="mb-2 text-sm font-semibold text-blue-700">Width</label>
-                                <input type="text" className="rounded-xl border bg-white px-4 py-3 shadow-sm" placeholder="cm" />
+                                <input
+                                    type="text"
+                                    className="rounded-xl border bg-white px-4 py-3 shadow-sm"
+                                    placeholder="cm"
+                                />
                             </div>
                             <div className="flex min-w-[180px] flex-1 flex-col">
                                 <label className="mb-2 text-sm font-semibold text-blue-700">Height</label>
-                                <input type="text" className="rounded-xl border bg-white px-4 py-3 shadow-sm" placeholder="cm" />
+                                <input
+                                    type="text"
+                                    className="rounded-xl border bg-white px-4 py-3 shadow-sm"
+                                    placeholder="cm"
+                                />
                             </div>
                             <div className="flex items-end">
                                 <button
@@ -217,7 +253,7 @@ const ShippingSection = () => {
 
     return (
         <div className="flex flex-col items-center justify-start bg-gradient-to-b from-blue-600 to-blue-400 px-6 py-12 md:px-8 lg:px-10">
-            <div className="mx-auto w-full max-w-7xl rounded-3xl bg-secondary/80 p-6 md:p-8 shadow-lg">
+            <div className="mx-auto w-full max-w-7xl rounded-3xl bg-secondary/80 p-6 shadow-lg md:p-8">
                 <div className="mb-8 flex items-center justify-between gap-5">
                     <button
                         onClick={() => setActiveTab('AEtoAE')}
@@ -230,7 +266,9 @@ const ShippingSection = () => {
                     <button
                         onClick={() => setActiveTab('International')}
                         className={`flex-1 rounded-xl py-4 text-center text-base font-semibold transition md:text-lg ${
-                            activeTab === 'International' ? 'bg-primary text-white shadow-md' : 'bg-secondary text-blue-700'
+                            activeTab === 'International'
+                                ? 'bg-primary text-white shadow-md'
+                                : 'bg-secondary text-blue-700'
                         }`}
                     >
                         Send Internationally

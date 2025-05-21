@@ -16,12 +16,12 @@ const Footer = () => {
                     <div>
                         <h4 className="mb-3 font-bold text-green-500">Parcel2Ship</h4>
                         <ul className="space-y-2">
-                            <li className="hover:text-green-400 transition">Services</li>
-                            <li className="hover:text-green-400 transition">Package Consolidation</li>
-                            <li className="hover:text-green-400 transition">Item Consolidation</li>
-                            <li className="hover:text-green-400 transition">Buy it for me</li>
-                            <li className="hover:text-green-400 transition">Refer a Friend</li>
-                            <li className="hover:text-green-400 transition">E-commerce Solutions</li>
+                            <li className="transition hover:text-green-400">Services</li>
+                            <li className="transition hover:text-green-400">Package Consolidation</li>
+                            <li className="transition hover:text-green-400">Item Consolidation</li>
+                            <li className="transition hover:text-green-400">Buy it for me</li>
+                            <li className="transition hover:text-green-400">Refer a Friend</li>
+                            <li className="transition hover:text-green-400">E-commerce Solutions</li>
                         </ul>
                     </div>
 
@@ -29,9 +29,9 @@ const Footer = () => {
                     <div>
                         <h4 className="mb-3 font-bold text-green-500">Help</h4>
                         <ul className="space-y-2">
-                            <li className="hover:text-green-400 transition">Frequently Asked Questions</li>
-                            <li className="hover:text-green-400 transition">Prohibited Materials</li>
-                            <li className="hover:text-green-400 transition">Shopping Directory</li>
+                            <li className="transition hover:text-green-400">Frequently Asked Questions</li>
+                            <li className="transition hover:text-green-400">Prohibited Materials</li>
+                            <li className="transition hover:text-green-400">Shopping Directory</li>
                         </ul>
                     </div>
 
@@ -39,8 +39,8 @@ const Footer = () => {
                     <div>
                         <h4 className="mb-3 font-bold text-green-500">Warehouses</h4>
                         <ul className="space-y-2">
-                            <li className="hover:text-green-400 transition">United States</li>
-                            <li className="hover:text-green-400 transition">Turkey</li>
+                            <li className="transition hover:text-green-400">United States</li>
+                            <li className="transition hover:text-green-400">Turkey</li>
                         </ul>
                     </div>
 
@@ -48,11 +48,11 @@ const Footer = () => {
                     <div>
                         <h4 className="mb-3 font-bold text-green-500">About</h4>
                         <ul className="space-y-2">
-                            <li className="hover:text-green-400 transition">Plans & Pricing</li>
-                            <li className="hover:text-green-400 transition">How It Works</li>
-                            <li className="hover:text-green-400 transition">Why Choose Us</li>
-                            <li className="hover:text-green-400 transition">Contact Us</li>
-                            <li className="hover:text-green-400 transition">About Us</li>
+                            <li className="transition hover:text-green-400">Plans & Pricing</li>
+                            <li className="transition hover:text-green-400">How It Works</li>
+                            <li className="transition hover:text-green-400">Why Choose Us</li>
+                            <li className="transition hover:text-green-400">Contact Us</li>
+                            <li className="transition hover:text-green-400">About Us</li>
                         </ul>
                     </div>
                 </div>

@@ -27,7 +27,10 @@ const Navbar = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/rates-and-services" className="text-base font-semibold transition hover:text-blue-700">
+                        <Link
+                            to="/rates-and-services"
+                            className="text-base font-semibold transition hover:text-blue-700"
+                        >
                             Rates & Services
                         </Link>
                     </li>
@@ -44,7 +47,10 @@ const Navbar = () => {
                         SIGN IN
                     </Link>
 
-                    <Link to="/signup" className="rounded-md bg-blue-700 px-4 py-2 font-semibold text-white shadow-sm transition hover:bg-blue-800">
+                    <Link
+                        to="/signup"
+                        className="rounded-md bg-blue-700 px-4 py-2 font-semibold text-white shadow-sm transition hover:bg-blue-800"
+                    >
                         SIGN UP
                     </Link>
                 </div>
@@ -60,16 +66,36 @@ const Navbar = () => {
                 <div className="bg-white px-6 py-4 shadow-md md:hidden">
                     <ul className="mb-6 flex flex-col gap-4 font-medium text-gray-700">
                         <li>
-                            <Link to="/business" className="block py-2 text-base font-semibold transition hover:text-blue-700">Business</Link>
+                            <Link
+                                to="/business"
+                                className="block py-2 text-base font-semibold transition hover:text-blue-700"
+                            >
+                                Business
+                            </Link>
                         </li>
                         <li>
-                            <Link to="/getAquote" className="block py-2 text-base font-semibold transition hover:text-blue-700">Get a Quote</Link>
+                            <Link
+                                to="/getAquote"
+                                className="block py-2 text-base font-semibold transition hover:text-blue-700"
+                            >
+                                Get a Quote
+                            </Link>
                         </li>
                         <li>
-                            <Link to="/rates-and-services" className="block py-2 text-base font-semibold transition hover:text-blue-700">Rates & Services</Link>
+                            <Link
+                                to="/rates-and-services"
+                                className="block py-2 text-base font-semibold transition hover:text-blue-700"
+                            >
+                                Rates & Services
+                            </Link>
                         </li>
                         <li>
-                            <Link to="/tracking" className="block py-2 text-base font-semibold transition hover:text-blue-700">Track a Parcel</Link>
+                            <Link
+                                to="/tracking"
+                                className="block py-2 text-base font-semibold transition hover:text-blue-700"
+                            >
+                                Track a Parcel
+                            </Link>
                         </li>
                     </ul>
                     <div className="flex flex-col space-y-4">

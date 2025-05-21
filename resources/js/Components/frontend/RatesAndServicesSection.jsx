@@ -76,7 +76,7 @@ const RatesAndServicesSection = () => {
             { destination: 'Europe', weight: '0-1 kg', basePrice: 100 },
             { destination: 'North America', weight: '0-1 kg', basePrice: 120 },
             { destination: 'Asia', weight: '0-1 kg', basePrice: 90 },
-        ]
+        ],
     }
 
     // Function to calculate shipping rates based on inputs
@@ -88,44 +88,46 @@ const RatesAndServicesSection = () => {
         // Find base price based on weight and destination
         let basePrice = 0
         if (rateType === 'domestic') {
-            const rateInfo = baseRates.domestic.find(r => {
-                const [min, max] = r.weight.split('-').map(w => parseInt(w.replace(' kg', '')))
-                return weight >= min && weight <= max
-            }) || baseRates.domestic[baseRates.domestic.length - 1]
+            const rateInfo =
+                baseRates.domestic.find((r) => {
+                    const [min, max] = r.weight.split('-').map((w) => parseInt(w.replace(' kg', '')))
+                    return weight >= min && weight <= max
+                }) || baseRates.domestic[baseRates.domestic.length - 1]
             basePrice = rateInfo.basePrice
         } else {
             // For international, find by destination
-            const rateInfo = baseRates.international.find(r => r.destination === toCountry) ||
-                            baseRates.international[0] // Default to first if not found
+            const rateInfo =
+                baseRates.international.find((r) => r.destination === toCountry) || baseRates.international[0] // Default to first if not found
             basePrice = rateInfo.basePrice
         }
 
         // Calculate rates for each service type
         const results = serviceTypes
-            .filter(service => service.availableCountries.includes(toCountry))
-            .map(service => ({
+            .filter((service) => service.availableCountries.includes(toCountry))
+            .map((service) => ({
                 ...service,
                 price: Math.round(basePrice * service.priceMultiplier * 100) / 100,
-                estimatedDelivery: service.deliveryTime
+                estimatedDelivery: service.deliveryTime,
             }))
 
         setCalculatedRates(results)
     }
 
     return (
-        <section className="py-16 bg-gray-50">
+        <section className="bg-gray-50 py-16">
             <div className="mx-auto w-full max-w-7xl px-6 md:px-8 lg:px-10">
-                <div className="text-center mb-12">
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Rates & Services</h2>
-                    <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                        We offer competitive rates for both domestic and international shipping with a variety of service options to meet your needs.
+                <div className="mb-12 text-center">
+                    <h2 className="mb-4 text-3xl font-bold text-gray-800 md:text-4xl">Our Rates & Services</h2>
+                    <p className="mx-auto max-w-3xl text-lg text-gray-600">
+                        We offer competitive rates for both domestic and international shipping with a variety of
+                        service options to meet your needs.
                     </p>
                 </div>
 
                 {/* Rate Calculator Section */}
-                <div className="mb-16 bg-white rounded-xl shadow-lg p-6 md:p-8">
-                    <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">Calculate Shipping Rates</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="mb-16 rounded-xl bg-white p-6 shadow-lg md:p-8">
+                    <h3 className="mb-6 text-center text-2xl font-bold text-gray-800">Calculate Shipping Rates</h3>
+                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
                         <div className="flex flex-col">
                             <label className="mb-2 text-sm font-semibold text-blue-700">From</label>
                             <select
@@ -193,19 +195,26 @@ const RatesAndServicesSection = () => {
                     {/* Display calculated rates */}
                     {calculatedRates && (
                         <div className="mt-8">
-                            <h4 className="text-xl font-bold text-gray-800 mb-4">Available Shipping Options</h4>
+                            <h4 className="mb-4 text-xl font-bold text-gray-800">Available Shipping Options</h4>
                             <div className="grid grid-cols-1 gap-4">
                                 {calculatedRates.map((option, index) => (
-                                    <div key={index} className="bg-gray-50 rounded-xl p-4 border border-gray-200 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                                    <div
+                                        key={index}
+                                        className="bg-gray-50 flex flex-col items-start justify-between gap-4 rounded-xl border border-gray-200 p-4 md:flex-row md:items-center"
+                                    >
                                         <div className="flex items-center gap-4">
                                             <div className="text-3xl">{option.icon}</div>
                                             <div>
                                                 <h5 className="text-lg font-bold text-blue-700">{option.title}</h5>
-                                                <p className="text-sm text-gray-600">Delivery in {option.estimatedDelivery}</p>
+                                                <p className="text-sm text-gray-600">
+                                                    Delivery in {option.estimatedDelivery}
+                                                </p>
                                             </div>
                                         </div>
-                                        <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
-                                            <div className="text-xl font-bold text-gray-800">AED {option.price.toFixed(2)}</div>
+                                        <div className="flex flex-col items-start gap-4 md:flex-row md:items-center">
+                                            <div className="text-xl font-bold text-gray-800">
+                                                AED {option.price.toFixed(2)}
+                                            </div>
                                             <button className="rounded-lg bg-green-600 px-4 py-2 text-sm font-bold text-white shadow-sm transition hover:bg-green-700">
                                                 Select
                                             </button>
@@ -219,22 +228,25 @@ const RatesAndServicesSection = () => {
 
                 {/* Services Section */}
                 <div className="mb-16">
-                    <h3 className="text-2xl font-bold text-gray-800 mb-8 text-center">Our Services</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <h3 className="mb-8 text-center text-2xl font-bold text-gray-800">Our Services</h3>
+                    <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                         {serviceTypes.map((service, index) => (
-                            <div key={index} className="bg-white rounded-xl shadow-md p-6 transition-transform hover:scale-105">
-                                <div className="text-4xl mb-4">{service.icon}</div>
-                                <h4 className="text-xl font-bold text-blue-700 mb-2">{service.title}</h4>
-                                <p className="text-gray-600 mb-4">{service.description}</p>
+                            <div
+                                key={index}
+                                className="rounded-xl bg-white p-6 shadow-md transition-transform hover:scale-105"
+                            >
+                                <div className="mb-4 text-4xl">{service.icon}</div>
+                                <h4 className="mb-2 text-xl font-bold text-blue-700">{service.title}</h4>
+                                <p className="mb-4 text-gray-600">{service.description}</p>
                                 <div className="mb-4">
-                                    <span className="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full mr-2">
+                                    <span className="mr-2 inline-block rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-semibold text-blue-800">
                                         {service.deliveryTime}
                                     </span>
                                 </div>
-                                <ul className="text-sm text-gray-600 space-y-2">
+                                <ul className="space-y-2 text-sm text-gray-600">
                                     {service.features.map((feature, i) => (
                                         <li key={i} className="flex items-start">
-                                            <span className="text-green-500 mr-2">✓</span>
+                                            <span className="mr-2 text-green-500">✓</span>
                                             {feature}
                                         </li>
                                     ))}
@@ -246,34 +258,40 @@ const RatesAndServicesSection = () => {
 
                 {/* Base Rates Section */}
                 <div>
-                    <h3 className="text-2xl font-bold text-gray-800 mb-8 text-center">Base Rate Information</h3>
-                    <p className="text-center text-gray-600 mb-8">
-                        Our base rates are calculated dynamically based on weight, dimensions, and destination.
-                        Use our calculator above to get accurate pricing for your specific shipment.
+                    <h3 className="mb-8 text-center text-2xl font-bold text-gray-800">Base Rate Information</h3>
+                    <p className="mb-8 text-center text-gray-600">
+                        Our base rates are calculated dynamically based on weight, dimensions, and destination. Use our
+                        calculator above to get accurate pricing for your specific shipment.
                     </p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div className="mb-8 grid grid-cols-1 gap-8 md:grid-cols-2">
                         {/* Domestic Base Rates */}
-                        <div className="bg-white rounded-xl shadow-md overflow-hidden">
-                            <div className="bg-blue-600 text-white py-3 px-6">
+                        <div className="overflow-hidden rounded-xl bg-white shadow-md">
+                            <div className="bg-blue-600 px-6 py-3 text-white">
                                 <h4 className="text-lg font-bold">Domestic Base Rates (UAE)</h4>
                             </div>
                             <div className="p-6">
-                                <p className="text-sm text-gray-600 mb-4">
+                                <p className="mb-4 text-sm text-gray-600">
                                     Starting prices before service-specific multipliers:
                                 </p>
                                 <table className="w-full">
                                     <thead className="bg-gray-50">
                                         <tr>
-                                            <th className="py-2 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Weight Range</th>
-                                            <th className="py-2 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Base Price</th>
+                                            <th className="px-4 py-2 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                                                Weight Range
+                                            </th>
+                                            <th className="px-4 py-2 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                                                Base Price
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-gray-200">
                                         {baseRates.domestic.map((rate, index) => (
                                             <tr key={index}>
-                                                <td className="py-3 px-4 text-sm">{rate.weight}</td>
-                                                <td className="py-3 px-4 text-sm font-medium">AED {rate.basePrice.toFixed(2)}</td>
+                                                <td className="px-4 py-3 text-sm">{rate.weight}</td>
+                                                <td className="px-4 py-3 text-sm font-medium">
+                                                    AED {rate.basePrice.toFixed(2)}
+                                                </td>
                                             </tr>
                                         ))}
                                     </tbody>
@@ -282,26 +300,32 @@ const RatesAndServicesSection = () => {
                         </div>
 
                         {/* International Base Rates */}
-                        <div className="bg-white rounded-xl shadow-md overflow-hidden">
-                            <div className="bg-blue-600 text-white py-3 px-6">
+                        <div className="overflow-hidden rounded-xl bg-white shadow-md">
+                            <div className="bg-blue-600 px-6 py-3 text-white">
                                 <h4 className="text-lg font-bold">International Base Rates</h4>
                             </div>
                             <div className="p-6">
-                                <p className="text-sm text-gray-600 mb-4">
+                                <p className="mb-4 text-sm text-gray-600">
                                     Starting prices for 0-1 kg before service-specific multipliers:
                                 </p>
                                 <table className="w-full">
                                     <thead className="bg-gray-50">
                                         <tr>
-                                            <th className="py-2 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Destination</th>
-                                            <th className="py-2 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Base Price</th>
+                                            <th className="px-4 py-2 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                                                Destination
+                                            </th>
+                                            <th className="px-4 py-2 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                                                Base Price
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-gray-200">
                                         {baseRates.international.map((rate, index) => (
                                             <tr key={index}>
-                                                <td className="py-3 px-4 text-sm">{rate.destination}</td>
-                                                <td className="py-3 px-4 text-sm font-medium">AED {rate.basePrice.toFixed(2)}</td>
+                                                <td className="px-4 py-3 text-sm">{rate.destination}</td>
+                                                <td className="px-4 py-3 text-sm font-medium">
+                                                    AED {rate.basePrice.toFixed(2)}
+                                                </td>
                                             </tr>
                                         ))}
                                     </tbody>
@@ -311,7 +335,9 @@ const RatesAndServicesSection = () => {
                     </div>
 
                     <div className="mt-8 text-center">
-                        <p className="text-gray-600 mb-4">Need a custom quote for bulk shipments or special requirements?</p>
+                        <p className="mb-4 text-gray-600">
+                            Need a custom quote for bulk shipments or special requirements?
+                        </p>
                         <button className="rounded-xl bg-green-600 px-8 py-3 text-base font-bold text-white shadow-md transition hover:bg-green-700">
                             Request Custom Quote
                         </button>
