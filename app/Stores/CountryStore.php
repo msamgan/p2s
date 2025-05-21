@@ -11,8 +11,8 @@ final class CountryStore
     public function createOrFind(string $countryName, string $countryCode)
     {
         return Country::query()->where('code', $countryCode)->first() ?: Country::query()->create([
-            'name' => $countryName,
-            'code' => $countryCode,
+            'name' => mb_strtoupper($countryName),
+            'code' => mb_strtoupper($countryCode),
         ]);
     }
 }

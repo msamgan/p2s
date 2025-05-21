@@ -1,48 +1,205 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useForm } from '@inertiajs/react'
+import InputError from '@/Components/InputError.jsx'
+import { countries as _countries } from '@actions/RateController.js'
 
 const ShippingSection = () => {
     const [activeTab, setActiveTab] = useState('AEtoAE')
     const [showServices, setShowServices] = useState(false)
+    const [shippingServices, setShippingServices] = useState([])
+    const [countries, setCountries] = useState([])
 
-    // Sample shipping services data - in a real app, this would come from an API
-    const shippingServices = [
-        {
-            id: 1,
-            company: 'DHL',
-            logo: 'https://www.dhl.com/content/dam/dhl/global/core/images/logos/dhl-logo.svg',
-            price: 'AED 45',
-            deliveryTime: '1-2 days',
-            rating: 4.8,
-            features: ['Tracking', 'Insurance', 'Door to Door'],
-        },
-        {
-            id: 2,
-            company: 'FedEx',
-            logo: 'https://www.fedex.com/content/dam/fedex-com/logos/logo.png',
-            price: 'AED 52',
-            deliveryTime: '1-3 days',
-            rating: 4.7,
-            features: ['Tracking', 'Insurance', 'Signature Required'],
-        },
-        {
-            id: 3,
-            company: 'Emirates Post',
-            logo: 'https://www.emiratespost.ae/assets/images/logo.svg',
-            price: 'AED 35',
-            deliveryTime: '2-4 days',
-            rating: 4.5,
-            features: ['Tracking', 'PO Box Delivery'],
-        },
-        {
-            id: 4,
-            company: 'Aramex',
-            logo: 'https://www.aramex.com/content/dam/aramex/global/logos/aramex-logo.svg',
-            price: 'AED 40',
-            deliveryTime: '1-3 days',
-            rating: 4.6,
-            features: ['Tracking', 'Insurance', 'Door to Door'],
-        },
-    ]
+    const getCountries = async () => setCountries(await _countries.data({}))
+
+    const { data, setData, errors } = useForm({
+        to: '',
+        length: '',
+        width: '',
+        height: '',
+        weight: '',
+    })
+
+    const onSubmit = (e) => {
+        e.preventDefault()
+        fetch(route('rate.show.rates', data))
+            .then((response) => response.json())
+            .then((data) => {
+                setShippingServices(data)
+                setShowServices(true)
+            })
+    }
+
+    useEffect(() => {
+        setShowServices(false)
+        if (activeTab === 'AEtoAE') {
+            setData('to', 'ae')
+        }
+    }, [activeTab])
+
+    useEffect(() => {
+        getCountries().then()
+    }, [])
+
+    const renderForm = () => {
+        switch (activeTab) {
+            case 'AEtoAE':
+                return (
+                    <div className="flex flex-wrap items-end gap-5">
+                        <form onSubmit={onSubmit}>
+                            <div className="mt-5 flex w-full gap-5">
+                                <div className="flex min-w-[180px] flex-1 flex-col">
+                                    <label className="mb-2 text-sm font-semibold text-blue-700">
+                                        Length<sup className={'text-red-800'}>*</sup>
+                                    </label>
+                                    <input
+                                        type="number"
+                                        className="rounded-xl border bg-white px-4 py-3 shadow-sm"
+                                        placeholder="cm"
+                                        value={data.length}
+                                        onChange={(e) => setData('length', e.target.value)}
+                                        required
+                                    />
+                                    <InputError message={errors.length} />
+                                </div>
+                                <div className="flex min-w-[180px] flex-1 flex-col">
+                                    <label className="mb-2 text-sm font-semibold text-blue-700">
+                                        Width<sup className={'text-red-800'}>*</sup>
+                                    </label>
+                                    <input
+                                        type="number"
+                                        className="rounded-xl border bg-white px-4 py-3 shadow-sm"
+                                        placeholder="cm"
+                                        value={data.width}
+                                        onChange={(e) => setData('width', e.target.value)}
+                                        required
+                                    />
+                                    <InputError message={errors.width} />
+                                </div>
+                                <div className="flex min-w-[180px] flex-1 flex-col">
+                                    <label className="mb-2 text-sm font-semibold text-blue-700">
+                                        Height<sup className={'text-red-800'}>*</sup>
+                                    </label>
+                                    <input
+                                        type="number"
+                                        className="rounded-xl border bg-white px-4 py-3 shadow-sm"
+                                        placeholder="cm"
+                                        value={data.height}
+                                        onChange={(e) => setData('height', e.target.value)}
+                                        required
+                                    />
+                                    <InputError message={errors.height} />
+                                </div>
+                                <div className="flex min-w-[180px] flex-1 flex-col">
+                                    <label className="mb-2 text-sm font-semibold text-blue-700">
+                                        Weight<sup className={'text-red-800'}>*</sup>
+                                    </label>
+                                    <input
+                                        type="number"
+                                        minLength={0.5}
+                                        maxLength={50}
+                                        className="rounded-xl border bg-white px-4 py-3 shadow-sm"
+                                        placeholder="kg"
+                                        value={data.weight}
+                                        onChange={(e) => setData('weight', e.target.value)}
+                                        required
+                                    />
+                                    <InputError message={errors.weight} />
+                                </div>
+                                <div className="flex items-end">
+                                    <button className="rounded-xl bg-green-600 px-8 py-3 text-base font-bold text-white shadow-md transition hover:bg-green-700">
+                                        Get a Quote
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                )
+
+            case 'International':
+                return (
+                    <form onSubmit={onSubmit}>
+                        <div className="flex flex-wrap items-end gap-5">
+                            <div className="flex min-w-[180px] flex-1 flex-col">
+                                <label className="mb-2 text-sm font-semibold text-blue-700">
+                                    Length<sup className={'text-red-800'}>*</sup>
+                                </label>
+                                <input
+                                    type="text"
+                                    className="rounded-xl border bg-white px-4 py-3 shadow-sm"
+                                    placeholder="cm"
+                                    value={data.length}
+                                    onChange={(e) => setData('length', e.target.value)}
+                                />
+                            </div>
+                            <div className="flex min-w-[180px] flex-1 flex-col">
+                                <label className="mb-2 text-sm font-semibold text-blue-700">
+                                    Width<sup className={'text-red-800'}>*</sup>
+                                </label>
+                                <input
+                                    type="text"
+                                    className="rounded-xl border bg-white px-4 py-3 shadow-sm"
+                                    placeholder="cm"
+                                    value={data.width}
+                                    onChange={(e) => setData('width', e.target.value)}
+                                />
+                            </div>
+                            <div className="flex min-w-[180px] flex-1 flex-col">
+                                <label className="mb-2 text-sm font-semibold text-blue-700">
+                                    Height<sup className={'text-red-800'}>*</sup>
+                                </label>
+                                <input
+                                    type="text"
+                                    className="rounded-xl border bg-white px-4 py-3 shadow-sm"
+                                    placeholder="cm"
+                                    value={data.height}
+                                    onChange={(e) => setData('height', e.target.value)}
+                                />
+                            </div>
+                            <div className="flex min-w-[180px] flex-1 flex-col">
+                                <label className="mb-2 text-sm font-semibold text-blue-700">
+                                    Weight<sup className={'text-red-800'}>*</sup>
+                                </label>
+                                <input
+                                    type="text"
+                                    className="rounded-xl border bg-white px-4 py-3 shadow-sm"
+                                    placeholder="kg"
+                                    value={data.weight}
+                                    onChange={(e) => setData('weight', e.target.value)}
+                                />
+                            </div>
+
+                            <div className="mt-1 flex w-full gap-5">
+                                <div className="flex min-w-[180px] flex-1 flex-col">
+                                    <label className="mb-2 text-sm font-semibold text-blue-700">Send To</label>
+                                    {countries.length > 0 && (
+                                        <select
+                                            onChange={(e) => setData('to', e.target.value)}
+                                            required={true}
+                                            className={'w-full rounded-xl border bg-white px-4 py-3 shadow-sm'}
+                                        >
+                                            <option value="">Select Country</option>
+                                            {countries.map((country) => (
+                                                <option key={country.code} value={country.code}>
+                                                    {country.name}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    )}
+                                </div>
+                                <div className="flex items-end">
+                                    <button className="rounded-xl bg-green-600 px-8 py-3 text-base font-bold text-white shadow-md transition hover:bg-green-700">
+                                        Get a Quote
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                )
+
+            default:
+                return null
+        }
+    }
 
     const renderShippingServices = () => {
         if (!showServices) return null
@@ -72,6 +229,12 @@ const ShippingSection = () => {
                                     scope="col"
                                     className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
                                 >
+                                    Weight
+                                </th>
+                                <th
+                                    scope="col"
+                                    className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                                >
                                     Price
                                 </th>
                                 <th
@@ -80,29 +243,11 @@ const ShippingSection = () => {
                                 >
                                     Delivery Time
                                 </th>
-                                <th
-                                    scope="col"
-                                    className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
-                                >
-                                    Rating
-                                </th>
-                                <th
-                                    scope="col"
-                                    className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
-                                >
-                                    Features
-                                </th>
-                                <th
-                                    scope="col"
-                                    className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
-                                >
-                                    Action
-                                </th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200 bg-white">
                             {shippingServices.map((service) => (
-                                <tr key={service.id} className="hover:bg-gray-50">
+                                <tr key={service.service} className="hover:bg-gray-50">
                                     <td className="whitespace-nowrap px-6 py-4">
                                         <div className="flex items-center">
                                             <div className="h-10 w-10 flex-shrink-0">
@@ -110,36 +255,23 @@ const ShippingSection = () => {
                                             </div>
                                             <div className="ml-4">
                                                 <div className="text-sm font-medium text-gray-900">
-                                                    {service.company}
+                                                    {service.service}
                                                 </div>
                                             </div>
                                         </div>
                                     </td>
                                     <td className="whitespace-nowrap px-6 py-4">
-                                        <div className="text-sm font-medium text-gray-900">{service.price}</div>
-                                    </td>
-                                    <td className="whitespace-nowrap px-6 py-4">
-                                        <div className="text-sm text-gray-900">{service.deliveryTime}</div>
-                                    </td>
-                                    <td className="whitespace-nowrap px-6 py-4">
-                                        <div className="text-sm text-gray-900">{service.rating} ★</div>
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        <div className="flex flex-wrap gap-1">
-                                            {service.features.map((feature, index) => (
-                                                <span
-                                                    key={index}
-                                                    className="inline-flex rounded-full bg-blue-100 px-2 text-xs font-semibold leading-5 text-blue-800"
-                                                >
-                                                    {feature}
-                                                </span>
-                                            ))}
+                                        <div className="text-sm font-medium text-gray-900">
+                                            {service.weight} {service.weight_unit}
                                         </div>
                                     </td>
-                                    <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
-                                        <button className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
-                                            Select
-                                        </button>
+                                    <td className="whitespace-nowrap px-6 py-4">
+                                        <div className="text-sm font-medium text-gray-900">
+                                            {service.rate} {service.currency}
+                                        </div>
+                                    </td>
+                                    <td className="whitespace-nowrap px-6 py-4">
+                                        <div className="text-sm text-gray-900">{service.delivery_time}</div>
                                     </td>
                                 </tr>
                             ))}
@@ -148,107 +280,6 @@ const ShippingSection = () => {
                 </div>
             </div>
         )
-    }
-
-    const renderForm = () => {
-        switch (activeTab) {
-            case 'AEtoAE':
-                return (
-                    <div className="flex flex-wrap items-end gap-5">
-                        <div className="flex min-w-[180px] flex-1 flex-col">
-                            <label className="mb-2 text-sm font-semibold text-blue-700">Send To</label>
-                            <div className="flex items-center justify-between rounded-xl border bg-white px-4 py-3 shadow-sm">
-                                <span>UK - Mainland</span>
-                                <span className="text-xl text-blue-700">⌄</span>
-                            </div>
-                        </div>
-                        <div className="flex min-w-[180px] flex-1 flex-col">
-                            <label className="mb-2 text-sm font-semibold text-blue-700">Length</label>
-                            <div className="rounded-xl border bg-white px-4 py-3 shadow-sm">Less than 1 metre</div>
-                        </div>
-                        <div className="flex min-w-[180px] flex-1 flex-col">
-                            <label className="mb-2 text-sm font-semibold text-blue-700">Weight</label>
-                            <div className="flex items-center justify-between rounded-xl border bg-white px-4 py-3 shadow-sm">
-                                <input type="number" defaultValue={1} className="w-full outline-none" />
-                                <span className="ml-2 text-blue-700">kg</span>
-                            </div>
-                        </div>
-                        <div className="flex items-end">
-                            <button
-                                onClick={() => setShowServices(true)}
-                                className="rounded-xl bg-green-600 px-8 py-3 text-base font-bold text-white shadow-md transition hover:bg-green-700"
-                            >
-                                Get a Quote
-                            </button>
-                        </div>
-                    </div>
-                )
-
-            case 'International':
-                return (
-                    <div className="flex flex-wrap items-end gap-5">
-                        <div className="flex min-w-[180px] flex-1 flex-col">
-                            <label className="mb-2 text-sm font-semibold text-blue-700">Send From</label>
-                            <div className="flex items-center justify-between rounded-xl border bg-white px-4 py-3 shadow-sm">
-                                <span>UK - Mainland</span>
-                                <span className="text-xl text-blue-700">⌄</span>
-                            </div>
-                        </div>
-                        <div className="flex min-w-[180px] flex-1 flex-col">
-                            <label className="mb-2 text-sm font-semibold text-blue-700">Send To</label>
-                            <div className="flex items-center justify-between rounded-xl border bg-white px-4 py-3 shadow-sm">
-                                <span>USA</span>
-                                <span className="text-xl text-blue-700">⌄</span>
-                            </div>
-                        </div>
-                        <div className="flex min-w-[180px] flex-1 flex-col">
-                            <label className="mb-2 text-sm font-semibold text-blue-700">Weight</label>
-                            <div className="flex items-center justify-between rounded-xl border bg-white px-4 py-3 shadow-sm">
-                                <input type="number" defaultValue={1} className="w-full outline-none" />
-                                <span className="ml-2 text-blue-700">kg</span>
-                            </div>
-                        </div>
-
-                        <div className="mt-5 flex w-full gap-5">
-                            <div className="flex min-w-[180px] flex-1 flex-col">
-                                <label className="mb-2 text-sm font-semibold text-blue-700">Length</label>
-                                <input
-                                    type="text"
-                                    className="rounded-xl border bg-white px-4 py-3 shadow-sm"
-                                    placeholder="cm"
-                                />
-                            </div>
-                            <div className="flex min-w-[180px] flex-1 flex-col">
-                                <label className="mb-2 text-sm font-semibold text-blue-700">Width</label>
-                                <input
-                                    type="text"
-                                    className="rounded-xl border bg-white px-4 py-3 shadow-sm"
-                                    placeholder="cm"
-                                />
-                            </div>
-                            <div className="flex min-w-[180px] flex-1 flex-col">
-                                <label className="mb-2 text-sm font-semibold text-blue-700">Height</label>
-                                <input
-                                    type="text"
-                                    className="rounded-xl border bg-white px-4 py-3 shadow-sm"
-                                    placeholder="cm"
-                                />
-                            </div>
-                            <div className="flex items-end">
-                                <button
-                                    onClick={() => setShowServices(true)}
-                                    className="rounded-xl bg-green-600 px-8 py-3 text-base font-bold text-white shadow-md transition hover:bg-green-700"
-                                >
-                                    Get a Quote
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                )
-
-            default:
-                return null
-        }
     }
 
     return (
@@ -261,7 +292,7 @@ const ShippingSection = () => {
                             activeTab === 'AEtoAE' ? 'bg-primary text-white shadow-md' : 'bg-secondary text-blue-700'
                         }`}
                     >
-                        Send UAE to UAE
+                        Send Within UAE
                     </button>
                     <button
                         onClick={() => setActiveTab('International')}
