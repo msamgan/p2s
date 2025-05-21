@@ -91,7 +91,7 @@ const ShippingSection = () => {
 
     return (
         <div className="flex flex-col items-center justify-start bg-gradient-to-b from-blue-600 to-blue-400 px-6 py-12 md:px-8 lg:px-10">
-            <div className="w-full max-w-7xl rounded-3xl bg-secondary/80 p-6 md:p-8 shadow-lg">
+            <div className="mx-auto w-full max-w-7xl rounded-3xl bg-secondary/80 p-6 md:p-8 shadow-lg">
                 <div className="mb-8 flex items-center justify-between gap-5">
                     <button
                         onClick={() => setActiveTab('AEtoAE')}
